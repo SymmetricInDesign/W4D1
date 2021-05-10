@@ -66,7 +66,16 @@ class KnightPathFinder
     #     end
     #     nil
     # end
+
+    def find_path(end_pos)
+        trace_path_back(@root_node.dfs(end_pos))
+    end
     
+    def trace_path_back(node)
+        path = [node.value]
+        return path if !node.parent
+        trace_path_back(node.parent).concat(path)
+    end
 
 end
 # i = -2
@@ -75,7 +84,19 @@ end
 # p 3.between?(0,3)
 # p KnightPathFinder.valid_moves([2,6])
 
+<<<<<<< HEAD
 knight =     KnightPathFinder.new([4,4])
 knight.build_move_tree
 p knight.considered_positions
 p knight.root_node.to_s
+=======
+# knight =     KnightPathFinder.new([4,4])
+# knight.build_move_tree
+# p knight.considered_positions.length
+# p knight.root_node.to_s
+
+kpf = KnightPathFinder.new([0, 0])
+kpf.build_move_tree
+p kpf.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+p kpf.find_path([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
+>>>>>>> f3271b04a2a37b77dc2064b6ea8f57e59550313a
